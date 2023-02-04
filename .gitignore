@@ -1,0 +1,8 @@
+node_modules/
+public/
+.env
+.DS_Store
+*.log
+*.swp
+dist/
+.cache/
