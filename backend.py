@@ -1,7 +1,7 @@
 import os
 import openai
 import json
-from fastapi import FastAPI
+from fastapi import FastAPI, File, UploadFile
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
@@ -12,12 +12,7 @@ prompt = "I am a highly intelligent resume builder bot. When provided with a bas
 async def root():
     return { "message": "Hello root" }
 
-@app.get("/create")
-async def create(json_file):
-    data = json.load(json_file)
-    generate_doc(data)
-
-@app.get("/get_ai_response/{field_name}/{data}")
+@app.get("/get-ai-response/{field_name}/{data}")
 async def get_ai_response(field_name : str, data : str):
     return openai.Completion.create(
         model = 'text-davinci-003',
@@ -26,6 +21,13 @@ async def get_ai_response(field_name : str, data : str):
         temperature = 1
     ).choices[0].text
 
-@app.get("/generate_doc")
-async def generate_doc(data, template):
-    raise NotImplementedError
+@app.get("/generate-doc")
+async def generate_doc(data: str):
+    data = json.loads(data)
+    with open("template.tex") as template_file:
+        template_text = template_file.read()
+
+    print(data)
+    final_text = template_text.format(**data)
+
+    return final_text
