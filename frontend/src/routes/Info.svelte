@@ -43,5 +43,6 @@
     <label for="skill2">Skill 2</label>
     <input type="text" id="skill2" name="skill2" placeholder="Your skill..">
     <label for="skill3">Skill 3</label>
+    <input type="text" id="skill3" name="skill3" placeholder="Your skill..">
 
 </form>
