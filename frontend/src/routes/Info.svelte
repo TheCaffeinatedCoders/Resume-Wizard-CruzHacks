@@ -1,4 +1,6 @@
 <script>
+    import {push} from 'svelte-spa-router'
+
     let sections = [
         "personalInfo",
         "education",
@@ -77,15 +79,26 @@
     //         currentSection = sections[sections.indexOf(currentSection) + 1];
     // }
 </script>
-<img src="/images/magicwand.png" width="200" height="200" class="rotateimg20 moveimagerighttop">
-<img src="/images/wizard-hat.png" width="200" height="200" class="rotateimg340 moveimagetopcenter">
-<h1>Resume Wizard</h1>
-<h2>
-    We are going to need some basic info from you to begin formatting your
-    resume
-</h2>
 
-<h3>{currentSection}</h3>
+<!-- <img src="/images/magicwand.png" width="200" height="200" class="rotateimg20 moveimagerighttop">
+<img src="/images/wizard-hat.png" width="200" height="200" class="rotateimg340 moveimagetopcenter moveimagevert"> -->
+
+
+<nav class="top_section">
+    <button class="homebutton" on:click={() => push('/')}>
+        <img src="/images/LOGO.png" alt="logo" align = "left" width="203" height="105">
+    </button>
+</nav>
+<div class="mid_section">
+    <h1 class="title">Resume Wizard</h1>
+    <h2 class="briefIntro">
+        We are going to need some basic info from you to begin formatting your
+        resume
+    </h2>
+</div>
+
+
+<h3 class="formm">{currentSection}</h3>
 {#if currentSection === "personalInfo"}
     <div>
         <label for="name">Name:</label>
@@ -178,6 +191,11 @@
         <input id="skill" bind:value={currentSectionData[0]} />
     </div>
 {/if}
+
+
+
+
+
 <div>
     <button class = "button NextPrev"
         type="button"
@@ -206,6 +224,7 @@
 
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Itim&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&display=swap');
 
    /* div {
         position: absolute;
@@ -240,15 +259,54 @@
         transform: rotate(340deg); 
     }
     .moveimagerighttop{
-        margin-left: 1000px;
-        margin-top: 16px;
+        margin-left: 700px;
+        margin-top: 300px;
         
+    }
+    .moveimagevert{
+        margin-bottom: -1000px;
     }
     .moveimagetopcenter{
         margin-left: 0px;
         margin-right: 0px;
         margin-top: 20px;
     }
+    
+    .homebutton {
+        width: 203px;
+        height: 105px;
+        padding: 0;
+        background-color: #ffffff;
+        color:#ffffff;
+        border-style: hidden;
+    }
+
+    .top_section {
+    }  
+
+    .mid_section {
+
+    }
+
+    .formm {
+        font-family: 'Noto Serif', serif;
+    }
+    
+
+    .title {
+        font-family: 'Itim', cursive;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    .briefIntro {
+        margin-bottom: 50px;
+        font-family: 'Itim', cursive;
+        font-size: 20px;
+        font-weight: 100;
+    }
+
+
     .button{
 		background-color: #ffffff;/*white*/
 		border: none;
@@ -263,9 +321,9 @@
 		cursor:pointer; 
 	}
 	.AIbutton{
-		background-color: rgba(175, 174, 224, 0.5);
+		background-color: rgba(238, 151, 224, 0.5);
 		color:black;
-		border: 2px solid #ffffff;; 
+		border: 2px solid rgba(238, 151, 224, 0.5);
 		border-radius:20px;
 		width: 41%;
 		/* margin-bottom: 50px; */
@@ -278,7 +336,7 @@
     .NextPrev{
         background-color: rgba(175, 174, 224, 0.5);
 		color:black;
-		border: 2px solid #ffffff;; 
+		border: 2px solid rgba(175, 174, 224, 0.5); 
 		border-radius:20px;
 		width: 20%;
     }
