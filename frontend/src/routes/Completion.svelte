@@ -3,8 +3,9 @@
 
     async function getResponse() {
         try {
-            const data = await fetch('http://127.0.0.1:8000');
+            const data = await fetch('http://127.0.0.1:8000/');
             response = await data.json();
+            console.log(response);
         } catch (error) {
             console.error(error);
         }
@@ -20,4 +21,4 @@
     placeholder="Insert some text here"
 />
 <button type="button" on:click={getResponse}>Click Me!</button>
-<p>Response: {response}</p>
+<p>Response: {response.message}</p>
