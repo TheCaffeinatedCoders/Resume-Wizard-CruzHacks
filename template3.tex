@@ -1,0 +1,127 @@
+\documentclass{article}
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesClass{my_cv}[2022/09/06 My custom CV class]
+
+\RequirePackage{titlesec}
+
+\usepackage{color}
+\usepackage{hyperref}
+
+\usepackage{geometry}
+\geometry{a4paper, top=1cm, bottom=3cm, left=0.5cm, right=0.5cm, %
+heightrounded, bindingoffset=0.5cm}
+
+\newcommand{\name}[1]{%
+  \begin{flushleft}
+  \end{flushleft}{\Huge{#1}}
+}
+
+
+
+
+
+\titleformat{\section}         % Customise the \section command 
+  {\Large\scshape\raggedright} % Make the \section headers large (\Large),
+                               % small capitals (\scshape) and left aligned (\raggedright)
+  {}{0em}                      % Can be used to give a prefix to all sections, like 'Section ...'
+  {}                           % Can be used to insert code before the heading
+  [\titlerule]                 % Inserts a horizontal line after the heading
+  
+  
+  \titleformat{\subsection}
+  {\large\scshape\raggedright}
+  {}{0em}
+  {}
+  
+  \newcommand{\datedsection}[2]{%
+  \section[#1]{#1 #2}%
+}
+\newcommand{\datedsubsection}[2]{%
+  \subsection[#1]{#1  #2}%
+}
+
+\usepackage[many]{tcolorbox}
+
+\begin{document}
+
+% PERSONAL INFO SECTION
+
+%start_personal_info
+\textcolor{blue}{\textbf{\name{\VAR{name}}}}
+
+\begin{minipage}{0.35\textwidth}
+
+\textcolor{blue}{\section{Contact Information}}
+    
+    \textbf{phone:} \VAR{phone}
+    
+    \textbf{Email:}  \VAR{email}
+    
+    \textbf{Linkedin:} \VAR{linkedin}
+
+    \textbf{GitHub:} \VAR{github}
+
+%end_personal_info
+
+% OBJECTIVE SECTION
+
+\textcolor{blue}{\section{Objective}}
+
+%start_objective
+    \VAR{objective} \\
+%end_objective
+
+
+% SKILLS SECTION
+
+\textcolor{blue}{\section{Skills}} 
+
+%start_skills    
+    \textbf{\VAR{skill_name}} \\
+    \hangindent=0.5cm \textit{\VAR{skill_description}} \\\\
+%end_skills
+    
+\end{minipage} 
+\hspace{1cm}\vrule \hspace{1cm} %this is what draws the line between the minipages
+\begin{minipage}{0.45\textwidth}
+\vspace{1cm}
+
+
+% EDUCATION SECTION
+
+\textcolor{blue}{\section{Education}}
+
+%start_education
+    \datedsubsection{\textbf{\VAR{school_name}}}{\textit{\VAR{school_start_date} - \VAR{school_end_date}}}
+    
+    \underline{\VAR{major}} \hfill \underline{\VAR{gpa}} \\
+    \VAR{school_description} \\
+%end_education
+
+
+% EMPLOYMENT SECTION
+
+\textcolor{blue}{\section{Employment}}
+
+%start_employment    
+    \datedsubsection{\textbf{\VAR{company_name}}}{\textit{\VAR{job_start_date} - \VAR{job_end_date}}} 
+
+    \underline{\VAR{job_name}} \\
+    \VAR{job_description} \\
+%end_employment
+
+    
+% PROJECTS SECTION
+
+\textcolor{blue}{\section{Projects}}
+
+%start_projects    
+    \datedsubsection{\textbf{\VAR{project_name}}}{\textit{\VAR{project_start_date} - \VAR{project_end_date}}} 
+
+    \VAR{project_description} \\
+%end_projects
+    
+\end{minipage}
+
+\end{document} 
