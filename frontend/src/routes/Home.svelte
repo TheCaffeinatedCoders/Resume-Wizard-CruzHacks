@@ -9,6 +9,7 @@ import {push, pop, replace} from 'svelte-spa-router'
 <!-- <button>Get Started</button> -->
 <!-- <button onclick = "window.location.href = 'http://localhost:5000';">Get Started</button> -->
 <button on:click={() => push('/info')}>Get Started</button>
+<img src="/images/stars.png" alt="" width="203" height="105">
 <style>
 	h1 {
 		color: #ff3e00;

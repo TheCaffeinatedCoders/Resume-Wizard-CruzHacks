@@ -87,7 +87,7 @@ let emptyForm = { company: '', position: '', start: '', end: '' };
         <input type="text" id="skill3" name="skill3" placeholder="Your skill..">
         <label for = "skilli">Add More</label>
         <button type = "button" onclick = "alert('Added Skill Slot');">Add Skills</button> 
-        <!-- <input type ="button" id = "skilli" name="skilli"> -->
+
     </form>
 
 
