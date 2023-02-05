@@ -80,6 +80,10 @@
     // }
 </script>
 
+<!-- <img src="/images/magicwand.png" width="200" height="200" class="rotateimg20 moveimagerighttop">
+<img src="/images/wizard-hat.png" width="200" height="200" class="rotateimg340 moveimagetopcenter moveimagevert"> -->
+
+
 <nav class="top_section">
     <button class="homebutton" on:click={() => push('/')}>
         <img src="/images/LOGO.png" alt="logo" align = "left" width="203" height="105">
@@ -132,7 +136,7 @@
             bind:value={currentSectionData.additonalEducationInfo}
         />
     </div>
-    <button class = "button button1" on:click={getAISuggauestion}>AI touch up</button>
+    <button class = "button AIbutton" on:click={getAISuggauestion}>AI touch up</button>
     {#if currentAISuggestion}
         <p>{currentAISuggestion}</p>
     {/if}
@@ -187,8 +191,13 @@
         <input id="skill" bind:value={currentSectionData[0]} />
     </div>
 {/if}
+
+
+
+
+
 <div>
-    <button class = "button button3"
+    <button class = "button NextPrev"
         type="button"
         on:click={() => {
             if (currentSection === "personalInfo") {
@@ -199,7 +208,7 @@
     >
         Previous
     </button>
-    <button class = "button button3"
+    <button class = "button NextPrev"
         type="button"
         on:click={() => {
             if (currentSection === "skills") {
@@ -243,6 +252,25 @@
         font-weight: 100;
     }
     */
+    .rotateimg20{
+        transform: rotate(20deg); 
+    }
+    .rotateimg340{
+        transform: rotate(340deg); 
+    }
+    .moveimagerighttop{
+        margin-left: 700px;
+        margin-top: 300px;
+        
+    }
+    .moveimagevert{
+        margin-bottom: -1000px;
+    }
+    .moveimagetopcenter{
+        margin-left: 0px;
+        margin-right: 0px;
+        margin-top: 20px;
+    }
     
     .homebutton {
         width: 203px;
@@ -292,38 +320,27 @@
 		transition-duration:0.4s;
 		cursor:pointer; 
 	}
-	.button1{
-		background-color: rgba(175, 174, 224, 0.5);
+	.AIbutton{
+		background-color: rgba(238, 151, 224, 0.5);
 		color:black;
-		border: 2px solid #ffffff;; 
+		border: 2px solid rgba(238, 151, 224, 0.5);
 		border-radius:20px;
 		width: 41%;
 		/* margin-bottom: 50px; */
 	}
-	.button1:hover{
+	.AIbutton:hover{
 		background-color: #ffffff;
 		color: rgba(175, 174, 224, 10); 
 	}
-    .button2{
-		background-color: rgba(175, 174, 224, 0.5);
-		color:black;
-		border: 2px solid #ffffff;; 
-		border-radius:20px;
-		width: 80%;
-		/* margin-bottom: 50px; */
-	}
-	.button2:hover{
-		background-color: #ffffff;
-		color: rgba(175, 174, 224, 10); 
-	}
-    .button3{
+
+    .NextPrev{
         background-color: rgba(175, 174, 224, 0.5);
 		color:black;
-		border: 2px solid #ffffff;; 
+		border: 2px solid rgba(175, 174, 224, 0.5); 
 		border-radius:20px;
 		width: 20%;
     }
-    .button3:hover{
+    .NextPrev:hover{
 		background-color: #ffffff;
 		color: rgba(175, 174, 224, 10); 
 	}
