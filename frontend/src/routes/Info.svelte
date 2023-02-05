@@ -45,6 +45,7 @@
     <label for="skill3">Skill 3</label>
     <input type="text" id="skill3" name="skill3" placeholder="Your skill..">
     <label for = "skilli">Add More</label>
-    <input type ="button" id = "skilli" name="skilli">
+    <button type = "button" onclick = "alert('Added Skill Slot');">Add Skills</button>
+    <!-- <input type ="button" id = "skilli" name="skilli"> -->
 
 </form>
