@@ -77,7 +77,8 @@
     //         currentSection = sections[sections.indexOf(currentSection) + 1];
     // }
 </script>
-
+<img src="/images/magicwand.png" width="200" height="200" class="rotateimg20 moveimagerighttop">
+<img src="/images/wizard-hat.png" width="200" height="200" class="rotateimg340 moveimagetopcenter">
 <h1>Resume Wizard</h1>
 <h2>
     We are going to need some basic info from you to begin formatting your
@@ -122,7 +123,7 @@
             bind:value={currentSectionData.additonalEducationInfo}
         />
     </div>
-    <button class = "button button1" on:click={getAISuggauestion}>AI touch up</button>
+    <button class = "button AIbutton" on:click={getAISuggauestion}>AI touch up</button>
     {#if currentAISuggestion}
         <p>{currentAISuggestion}</p>
     {/if}
@@ -178,7 +179,7 @@
     </div>
 {/if}
 <div>
-    <button class = "button button3"
+    <button class = "button NextPrev"
         type="button"
         on:click={() => {
             if (currentSection === "personalInfo") {
@@ -189,7 +190,7 @@
     >
         Previous
     </button>
-    <button class = "button button3"
+    <button class = "button NextPrev"
         type="button"
         on:click={() => {
             if (currentSection === "skills") {
@@ -232,6 +233,22 @@
         font-weight: 100;
     }
     */
+    .rotateimg20{
+        transform: rotate(20deg); 
+    }
+    .rotateimg340{
+        transform: rotate(340deg); 
+    }
+    .moveimagerighttop{
+        margin-left: 1000px;
+        margin-top: 16px;
+        
+    }
+    .moveimagetopcenter{
+        margin-left: 0px;
+        margin-right: 0px;
+        margin-top: 20px;
+    }
     .button{
 		background-color: #ffffff;/*white*/
 		border: none;
@@ -245,7 +262,7 @@
 		transition-duration:0.4s;
 		cursor:pointer; 
 	}
-	.button1{
+	.AIbutton{
 		background-color: rgba(175, 174, 224, 0.5);
 		color:black;
 		border: 2px solid #ffffff;; 
@@ -253,30 +270,19 @@
 		width: 41%;
 		/* margin-bottom: 50px; */
 	}
-	.button1:hover{
+	.AIbutton:hover{
 		background-color: #ffffff;
 		color: rgba(175, 174, 224, 10); 
 	}
-    .button2{
-		background-color: rgba(175, 174, 224, 0.5);
-		color:black;
-		border: 2px solid #ffffff;; 
-		border-radius:20px;
-		width: 80%;
-		/* margin-bottom: 50px; */
-	}
-	.button2:hover{
-		background-color: #ffffff;
-		color: rgba(175, 174, 224, 10); 
-	}
-    .button3{
+
+    .NextPrev{
         background-color: rgba(175, 174, 224, 0.5);
 		color:black;
 		border: 2px solid #ffffff;; 
 		border-radius:20px;
 		width: 20%;
     }
-    .button3:hover{
+    .NextPrev:hover{
 		background-color: #ffffff;
 		color: rgba(175, 174, 224, 10); 
 	}
