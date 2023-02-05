@@ -26,6 +26,8 @@
     <input type="text" id="degree" name="degree" placeholder="Your degree..">
     <label for="graduation">Graduation</label>
     <input type="text" id="graduation" name="graduation" placeholder="Your graduation..">
+    <label for = "moreeducation">Add More</label>
+    <button type = "button" onclick = "alert('Added Education Slot');">Add Education</button> 
 
     <h3>Work Experience</h3>
     <label for="company">Company</label>
@@ -36,6 +38,8 @@
     <input type="text" id="start" name="start" placeholder="Your start..">
     <label for="end">End</label>
     <input type="text" id="end" name="end" placeholder="Your end..">
+    <label for = "morejobs">Add More</label>
+    <button type = "button" onclick = "alert('Added Job Slot');">Add Jobs</button> 
 
     <h3>Skills</h3>
     <label for="skill1">Skill 1</label>
@@ -45,7 +49,7 @@
     <label for="skill3">Skill 3</label>
     <input type="text" id="skill3" name="skill3" placeholder="Your skill..">
     <label for = "skilli">Add More</label>
-    <button type = "button" onclick = "alert('Added Skill Slot');">Add Skills</button>
+    <button type = "button" onclick = "alert('Added Skill Slot');">Add Skills</button> 
     <!-- <input type ="button" id = "skilli" name="skilli"> -->
 
 </form>
