@@ -56,7 +56,7 @@ async def generate_doc(data: dict):
         # data = json.loads(data)
         print(data)
         env = make_env(loader=FileSystemLoader('.'))
-        with open('template.tex', 'r') as f:
+        with open('template1.tex', 'r') as f:
             template_text = f.read()
             # template = env.from_string(template_text)
 

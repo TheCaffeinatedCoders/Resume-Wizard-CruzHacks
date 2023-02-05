@@ -12,11 +12,11 @@ import { push } from "svelte-spa-router";
     let userData = {
         personal_info: [
             {
-                name: "Carson Webster",
-                email: "ccwebste@ucsc.edu",
-                phone: "6193028234",
-                github: "carsonwebster",
-                linkedin: "carsonwebster"
+                name: "",
+                email: "",
+                phone: "",
+                github: "",
+                linkedin: ""
             },
         ],
         objective: [
