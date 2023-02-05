@@ -2,6 +2,7 @@
     let response = "";
     const endpoint = "http://127.0.0.1:8000/get-ai-response";
     let userInput = "";
+    let latex = "";
     async function getResponse() {
         try {
             const data = await fetch(
@@ -32,8 +33,9 @@
                 },
                 body: JSON.stringify(UserArgs),
             });
-            let jsonData = await response.json();
-            console.log(jsonData);
+            let textData = await response.text();
+            console.log(textData);
+            latex = textData;
         } catch (error) {
             console.error(error);
         }
@@ -53,3 +55,6 @@
 <p>Response: {response}</p>
 
 <button on:click={getDoc}>Generate Doc</button>
+{#if latex != ""}
+    <p>Latex: {latex}</p>
+{/if}
