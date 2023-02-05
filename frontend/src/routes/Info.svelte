@@ -1,50 +1,63 @@
 <script>
     let sections = [
-        "personalInfo",
+        "personal_info",
+        "objective",
         "education",
-        "workExperience",
+        "employment",
         "projects",
         "skills",
     ];
-    let currentSection = "personalInfo";
+    let currentSection = "personal_info";
     let userData = {
-        personalInfo: [
+        personal_info: [
             {
-                name: "",
-                email: "",
-                phone: "",
-                objective: "",
+                name: "Carson Webster",
+                email: "ccwebste@ucsc.edu",
+                phone: "6193028234",
+                github: "carsonwebster",
+                linkedin: "carsonwebster"
+            },
+        ],
+        objective: [
+            {
+                objective: ""
             },
         ],
         education: [
             {
-                school: "",
+                school_name: "",
                 degree: "",
-                graduation: "",
-                additonalEducationInfo: "",
+                gpa: "",
+                school_description: "",
+                school_start_date: "",
+                school_end_date: ""
             },
         ],
-        workExperience: [
+        employment: [
             {
-                company: "",
-                position: "",
-                workStart: "",
-                workEnd: "",
-                additonalWorkInfo: "",
+                company_name: "",
+                company_city: "",
+                job_name: "",
+                job_start_date: "",
+                job_end_date: "",
+                job_description: "",
             },
         ],
         projects: [
             {
-                name: "",
-                description: "",
-                stack: "",
-                projectStart: "",
-                projectEnd: "",
+                project_name: "",
+                project_start_date: "",
+                project_end_date: "",
+                project_description: "",
             },
         ],
-        skills: [""],
+        skills: [
+            {
+                skill_name: "",
+                skill_description: "",
+            },
+        ],
     };
-
 
     $: currentSectionData = userData[currentSection];
     let currentAISuggestion = "";
@@ -63,19 +76,37 @@
             console.error(error);
         }
     }
+    async function getPDF() {
+        try {
+            const response = await fetch(`http://127.0.0.1:8000/generate-doc`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(userData),
+            });
 
-    // function nextSection() {
-    //     if (currentSection === "personalInfo") {
-    //             return;
-    //         }
-    //         currentSection = sections[sections.indexOf(currentSection) - 1];
-    // }
-    // function previousSection() {
-    //     if (currentSection === "skills") {
-    //             alert(userData);
-    //         }
-    //         currentSection = sections[sections.indexOf(currentSection) + 1];
-    // }
+            if (response.ok) {
+                console.log("success");
+                const blob = await response.blob();
+                const link = document.createElement('a');
+                link.href = URL.createObjectURL(blob);
+                link.download = 'document.pdf';
+                link.click();
+                // const pdfUrl = URL.createObjectURL(blob);
+                // window.open(pdfUrl);
+                // const link = document.createElement("a");
+                // link.href = URL.createObjectURL(blob);
+                // link.download = "document.pdf";
+                // link.click();
+            } else {
+                console.error(await response.text());
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
 </script>
 
 <h1>Resume Wizard</h1>
@@ -85,96 +116,112 @@
 </h2>
 
 <h3>{currentSection}</h3>
-{#if currentSection === "personalInfo"}
+{#if currentSection === "personal_info"}
     <div>
         <label for="name">Name:</label>
-        <input id="name" bind:value={currentSectionData.name} />
+        <input id="name" bind:value={currentSectionData[0].name} />
     </div>
     <div>
         <label for="email">Email:</label>
-        <input id="email" bind:value={currentSectionData.email} />
+        <input id="email" bind:value={currentSectionData[0].email} />
     </div>
     <div>
         <label for="phone">Phone:</label>
-        <input id="phone" bind:value={currentSectionData.phone} />
+        <input id="phone" bind:value={currentSectionData[0].phone} />
     </div>
     <div>
+        <label for="github">Github:</label>
+        <input id="github" bind:value={currentSectionData[0].github} />
+    </div>
+    <div>
+        <label for="linkedin">Linkedin:</label>
+        <input id="linkedin" bind:value={currentSectionData[0].linkedin} />
+    </div>
+{:else if currentSection === "objective"}
+    <div>
         <label for="objective">Objective:</label>
-        <input id="objective" bind:value={currentSectionData.objective} />
+        <input id="objective" bind:value={currentSectionData[0].objective} />
     </div>
 {:else if currentSection === "education"}
     <div>
-        <label for="school">School:</label>
-        <input id="school" bind:value={currentSectionData.school} />
+        <label for="schoolName">School Name:</label>
+        <input id="schoolName" bind:value={currentSectionData[0].schoolName} />
     </div>
     <div>
         <label for="degree">Degree:</label>
-        <input id="degree" bind:value={currentSectionData.degree} />
+        <input id="degree" bind:value={currentSectionData[0].degree} />
     </div>
     <div>
-        <label for="graduation">Graduation:</label>
-        <input id="graduation" bind:value={currentSectionData.graduation} />
+        <label for="gpa">GPA:</label>
+        <input id="gpa" bind:value={currentSectionData[0].gpa} />
     </div>
     <div>
-        <label for="additonalEducationInfo">Additional Education Info:</label>
-        <input
-            id="additonalEducationInfo"
-            bind:value={currentSectionData.additonalEducationInfo}
-        />
+        <label for ="school_description">School Description:</label>
+        <input id="school_description" bind:value={currentSectionData[0].school_description} />
+    </div>
+    <div>
+        <label for="school_start_date">School Start Date:</label>
+        <input id="school_start_date" bind:value={currentSectionData[0].school_start_date} />
+    </div>
+    <div>
+        <label for="school_end_date">School End Date:</label>
+        <input id="school_end_date" bind:value={currentSectionData[0].school_end_date} />
     </div>
     <button on:click={getAISuggauestion}>AI touch up</button>
     {#if currentAISuggestion}
         <p>{currentAISuggestion}</p>
     {/if}
-{:else if currentSection === "workExperience"}
+{:else if currentSection === "employment"}
     <div>
-        <label for="company">Company:</label>
-        <input id="company" bind:value={currentSectionData.company} />
+        <label for="companyName">Company Name:</label>
+        <input id="companyName" bind:value={currentSectionData[0].companyName} />
     </div>
     <div>
-        <label for="position">Position:</label>
-        <input id="position" bind:value={currentSectionData.position} />
+        <label for="company_city">Company City:</label>
+        <input id="company_city" bind:value={currentSectionData[0].company_city} />
     </div>
     <div>
-        <label for="workStart">Start:</label>
-        <input id="workStart" bind:value={currentSectionData.workStart} />
+        <label for="job_name">Job Name:</label>
+        <input id="job_name" bind:value={currentSectionData[0].job_name} />
     </div>
     <div>
-        <label for="workEnd">End:</label>
-        <input id="workEnd" bind:value={currentSectionData.workEnd} />
+        <label for="job_start_date">Job Start Date:</label>
+        <input id="job_start_date" bind:value={currentSectionData[0].job_start_date} />
     </div>
     <div>
-        <label for="additonalWorkInfo">Additional Work Info:</label>
-        <input
-            id="additonalWorkInfo"
-            bind:value={currentSectionData.additonalWorkInfo}
-        />
+        <label for="job_end_date">Job End Date:</label>
+        <input id="job_end_date" bind:value={currentSectionData[0].job_end_date} />
     </div>
+    <div>
+        <label for="job_description">Job Description:</label>
+        <input id="job_description" bind:value={currentSectionData[0].job_description} />
+    </div>
+
 {:else if currentSection === "projects"}
     <div>
-        <label for="name">Name:</label>
-        <input id="name" bind:value={currentSectionData.name} />
+        <label for="project_name">Project Name:</label>
+        <input id="project_name" bind:value={currentSectionData[0].project_name} />
     </div>
     <div>
-        <label for="description">Description:</label>
-        <input id="description" bind:value={currentSectionData.description} />
+        <label for="project_start_date">Project Start Date:</label>
+        <input id="project_start_date" bind:value={currentSectionData[0].project_start_date} />
     </div>
     <div>
-        <label for="stack">Stack:</label>
-        <input id="stack" bind:value={currentSectionData.stack} />
+        <label for="project_end_date">Project End Date:</label>
+        <input id="project_end_date" bind:value={currentSectionData[0].project_end_date} />
     </div>
     <div>
-        <label for="projectStart">Start:</label>
-        <input id="projectStart" bind:value={currentSectionData.projectStart} />
-    </div>
-    <div>
-        <label for="projectEnd">End:</label>
-        <input id="projectEnd" bind:value={currentSectionData.projectEnd} />
+        <label for="project_description">Project Description:</label>
+        <input id="project_description" bind:value={currentSectionData[0].project_description} />
     </div>
 {:else if currentSection === "skills"}
     <div>
-        <label for="skill">Skill:</label>
-        <input id="skill" bind:value={currentSectionData[0]} />
+        <label for="skill_name">Skill Name:</label>
+        <input id="skill_name" bind:value={currentSectionData[0].skill_name} />
+    </div>
+    <div>
+        <label for="skill_description">Skill Description:</label>
+        <input id="skill_description" bind:value={currentSectionData[0].skill_description} />
     </div>
 {/if}
 <div>
@@ -193,7 +240,8 @@
         type="button"
         on:click={() => {
             if (currentSection === "skills") {
-                alert(JSON.stringify(userData));
+                // alert(JSON.stringify(userData));
+                getPDF();
             }
             currentSection = sections[sections.indexOf(currentSection) + 1];
         }}
@@ -201,73 +249,3 @@
         Next
     </button>
 </div>
-
-
-<style>
-    @import url('https://fonts.googleapis.com/css2?family=Itim&display=swap');
-
-    div {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-flow: column;
-        background-color: rgba(175, 174, 224, 0.39);
-    }
-
-    h1 {
-        font-family: 'Itim', cursive;
-        margin-top: 20px;
-        margin-bottom: 20px;
-    }
-
-    h2 {
-        margin-bottom: 50px;
-        font-family: 'Itim', cursive;
-        font-size: 20px;
-        font-weight: 100;
-    }
-
-    .button{
-		background-color: #ffffff;/*white*/
-		border: none;
-		color:white;
-		padding: 16px 32px;
-		text-align: center;
-		text-decoration: none;
-		display: inline-block;
-		font-size: 16px;
-		margin: 4px 2px; 
-		transition-duration:0.4s;
-		cursor:pointer; 
-	}
-	.button1{
-		background-color: rgba(175, 174, 224, 0.5);
-		color:black;
-		border: 2px solid #ffffff;; 
-		border-radius:20px;
-		width: 70%;
-		/* margin-bottom: 50px; */
-	}
-	.button1:hover{
-		background-color: #ffffff;
-		color: rgba(175, 174, 224, 10); 
-	}
-    .button2{
-		background-color: rgba(175, 174, 224, 0.5);
-		color:black;
-		border: 2px solid #ffffff;; 
-		border-radius:20px;
-		width: 80%;
-		/* margin-bottom: 50px; */
-	}
-	.button2:hover{
-		background-color: #ffffff;
-		color: rgba(175, 174, 224, 10); 
-	}
-
-</style>
