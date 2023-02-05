@@ -178,7 +178,7 @@
     </div>
 {/if}
 <div>
-    <button
+    <button class = "button button3"
         type="button"
         on:click={() => {
             if (currentSection === "personalInfo") {
@@ -189,7 +189,7 @@
     >
         Previous
     </button>
-    <button
+    <button class = "button button3"
         type="button"
         on:click={() => {
             if (currentSection === "skills") {
@@ -206,7 +206,7 @@
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Itim&display=swap');
 
-    div {
+   /* div {
         position: absolute;
         top: 0;
         left: 0;
@@ -231,7 +231,7 @@
         font-size: 20px;
         font-weight: 100;
     }
-
+    */
     .button{
 		background-color: #ffffff;/*white*/
 		border: none;
@@ -266,6 +266,17 @@
 		/* margin-bottom: 50px; */
 	}
 	.button2:hover{
+		background-color: #ffffff;
+		color: rgba(175, 174, 224, 10); 
+	}
+    .button3{
+        background-color: rgba(175, 174, 224, 0.5);
+		color:black;
+		border: 2px solid #ffffff;; 
+		border-radius:20px;
+		width: 30%;
+    }
+    .button3:hover{
 		background-color: #ffffff;
 		color: rgba(175, 174, 224, 10); 
 	}
