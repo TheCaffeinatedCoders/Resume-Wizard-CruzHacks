@@ -6,3 +6,4 @@ public/build/
 *.swp
 dist/
 .cache/
+.__pycache__/
