@@ -1,4 +1,6 @@
 <script>
+    import {push} from 'svelte-spa-router'
+
     let sections = [
         "personalInfo",
         "education",
@@ -78,13 +80,21 @@
     // }
 </script>
 
-<h1>Resume Wizard</h1>
-<h2>
-    We are going to need some basic info from you to begin formatting your
-    resume
-</h2>
+<nav class="top_section">
+    <button class="homebutton" on:click={() => push('/')}>
+        <img src="/images/LOGO.png" alt="logo" align = "left" width="203" height="105">
+    </button>
+</nav>
+<div class="mid_section">
+    <h1 class="title">Resume Wizard</h1>
+    <h2 class="briefIntro">
+        We are going to need some basic info from you to begin formatting your
+        resume
+    </h2>
+</div>
 
-<h3>{currentSection}</h3>
+
+<h3 class="formm">{currentSection}</h3>
 {#if currentSection === "personalInfo"}
     <div>
         <label for="name">Name:</label>
@@ -205,6 +215,7 @@
 
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Itim&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&display=swap');
 
    /* div {
         position: absolute;
@@ -232,6 +243,42 @@
         font-weight: 100;
     }
     */
+    
+    .homebutton {
+        width: 203px;
+        height: 105px;
+        padding: 0;
+        background-color: #ffffff;
+        color:#ffffff;
+        border-style: hidden;
+    }
+
+    .top_section {
+    }  
+
+    .mid_section {
+
+    }
+
+    .formm {
+        font-family: 'Noto Serif', serif;
+    }
+    
+
+    .title {
+        font-family: 'Itim', cursive;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    .briefIntro {
+        margin-bottom: 50px;
+        font-family: 'Itim', cursive;
+        font-size: 20px;
+        font-weight: 100;
+    }
+
+
     .button{
 		background-color: #ffffff;/*white*/
 		border: none;
