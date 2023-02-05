@@ -14,7 +14,7 @@ let emptyForm = { company: '', position: '', start: '', end: '' };
     <h1>Resume Wizard</h1>
     <h2>We are going to need some basic info from you to begin formatting your resume</h2>
 
-    <!-- <img src="../images/witch-broom.png" alt="broom"> -->
+    <img src="/images/hat.png" alt="broom">
 
     <form>
         <h3>Personal Information</h3>
@@ -89,7 +89,6 @@ let emptyForm = { company: '', position: '', start: '', end: '' };
         <button type = "button" onclick = "alert('Added Skill Slot');">Add Skills</button> 
 
     </form>
-
 
 </div>
 
