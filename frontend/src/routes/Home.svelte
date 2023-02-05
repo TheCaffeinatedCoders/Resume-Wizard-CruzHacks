@@ -22,6 +22,7 @@ import {push, pop, replace} from 'svelte-spa-router'
         top: 0;
         left: 0;
         right: 0;
+		bottom: 0;
 
         background-color: rgba(175, 174, 224, 0.5);
     }

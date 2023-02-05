@@ -1,4 +1,5 @@
 <script>
+import { push } from "svelte-spa-router";
     let sections = [
         "personal_info",
         "objective",
@@ -105,16 +106,32 @@
         }
     }
 
+
 </script>
 
-<h1>Resume Wizard</h1>
-<h2>
+
+<nav>
+  <button class="homebutton" on:click={() => push("/")}>
+    <img
+      src="/images/LOGO.png"
+      alt="logo"
+      align="left"
+      width="203"
+      height="105"
+    />
+  </button>
+</nav>
+<div>
+  <h1 class="title">Resume Wizard</h1>
+  <h2 class="briefIntro">
     We are going to need some basic info from you to begin formatting your
     resume
-</h2>
+  </h2>
+</div>
 
-<h3>{currentSection}</h3>
+<div id="container">
 {#if currentSection === "personal_info"}
+<h3>Personal Info</h3>
     <div>
         <label for="name">Name:</label>
         <input id="name" bind:value={currentSectionData[0].name} />
@@ -140,8 +157,11 @@
         <label for="objective">Objective:</label>
         <input id="objective" bind:value={currentSectionData[0].objective} />
     </div>
-{:else if currentSection === "education"}
+  {:else if currentSection === "education"}
+    <h3>Education</h3>
+
     <div>
+
         <label for="schoolName">School Name:</label>
         <input id="schoolName" bind:value={currentSectionData[0].schoolName} />
     </div>
@@ -165,11 +185,15 @@
         <label for="school_end_date">School End Date:</label>
         <input id="school_end_date" bind:value={currentSectionData[0].school_end_date} />
     </div>
-    <button on:click={getAISuggauestion}>AI touch up</button>
+    <button class="button AIbutton" on:click={getAISuggauestion}
+      >AI touch up</button
+    >
     {#if currentAISuggestion}
-        <p>{currentAISuggestion}</p>
+      <p>{currentAISuggestion}</p>
     {/if}
+
 {:else if currentSection === "employment"}
+<h3>Work Experience</h3>
     <div>
         <label for="companyName">Company Name:</label>
         <input id="companyName" bind:value={currentSectionData[0].companyName} />
@@ -194,9 +218,17 @@
         <label for="job_description">Job Description:</label>
         <input id="job_description" bind:value={currentSectionData[0].job_description} />
     </div>
-
-{:else if currentSection === "projects"}
+    <button class="button AIbutton" on:click={getAISuggauestion}
+    >AI touch up</button
+  >
+  {#if currentAISuggestion}
+    <p>{currentAISuggestion}</p>
+  {/if}
+  
+  {:else if currentSection === "projects"}
+    <h3>Projects</h3>
     <div>
+
         <label for="project_name">Project Name:</label>
         <input id="project_name" bind:value={currentSectionData[0].project_name} />
     </div>
@@ -212,7 +244,14 @@
         <label for="project_description">Project Description:</label>
         <input id="project_description" bind:value={currentSectionData[0].project_description} />
     </div>
-{:else if currentSection === "skills"}
+    <button class="button AIbutton" on:click={getAISuggauestion}
+    >AI touch up</button
+  >
+  {#if currentAISuggestion}
+    <p>{currentAISuggestion}</p>
+  {/if}
+  {:else if currentSection === "skills"}
+    <h3>Skills</h3>
     <div>
         <label for="skill_name">Skill Name:</label>
         <input id="skill_name" bind:value={currentSectionData[0].skill_name} />
@@ -220,20 +259,25 @@
     <div>
         <label for="skill_description">Skill Description:</label>
         <input id="skill_description" bind:value={currentSectionData[0].skill_description} />
+
     </div>
-{/if}
-<div>
+  {/if}
+
+  <div>
     <button
-        type="button"
-        on:click={() => {
-            if (currentSection === "personalInfo") {
-                return;
-            }
-            currentSection = sections[sections.indexOf(currentSection) - 1];
-        }}
+      class="button NextPrev"
+      type="button"
+      on:click={() => {
+        if (currentSection === "personalInfo") {
+          return;
+        }
+        currentSection = sections[sections.indexOf(currentSection) - 1];
+      }}
     >
-        Previous
+      Previous
     </button>
+    
+    
     <button
         type="button"
         on:click={() => {
@@ -242,7 +286,93 @@
             }
             currentSection = sections[sections.indexOf(currentSection) + 1];
         }}
-    >
-        Next
+      class="button NextPrev">
+      Next
     </button>
+  </div>
 </div>
+
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Itim&display=swap");
+  @import url("https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&display=swap");
+
+
+
+  #container {
+    margin: 0 auto;
+    background-color: rgb(243, 222, 185);
+    padding: 30px;
+    border-radius: 50px;
+    width: 60%;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  }
+
+  input {
+    background-color: #ffffff;
+    display: inline;
+  }
+
+  .homebutton {
+    width: 203px;
+    height: 105px;
+    padding: 0;
+    background-color: #ffffff;
+    color: #ffffff;
+    border-style: hidden;
+  }
+
+  .formm {
+    font-family: "Noto Serif", serif;
+  }
+
+  .title {
+    font-family: "Itim", cursive;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  .briefIntro {
+    margin-bottom: 50px;
+    font-family: "Itim", cursive;
+    font-size: 20px;
+    font-weight: 100;
+  }
+
+  .button {
+    background-color: #ffffff; /*white*/
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+  }
+  .AIbutton {
+    background-color: rgba(238, 151, 224, 0.5);
+    color: black;
+    border: 2px solid rgba(238, 151, 224, 0.5);
+    border-radius: 20px;
+    width: 41%;
+    /* margin-bottom: 50px; */
+  }
+  .AIbutton:hover {
+    background-color: #ffffff;
+    color: rgba(175, 174, 224, 10);
+  }
+
+  .NextPrev {
+    background-color: rgba(175, 174, 224, 0.5);
+    color: black;
+    border: 2px solid rgba(175, 174, 224, 0.5);
+    border-radius: 20px;
+    width: 20%;
+  }
+  .NextPrev:hover {
+    background-color: #ffffff;
+    color: rgba(175, 174, 224, 10);
+  }
+</style>
