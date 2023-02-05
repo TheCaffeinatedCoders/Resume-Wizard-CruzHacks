@@ -1,7 +1,10 @@
 import os
 import openai
 import json
-from fastapi import FastAPI, File, UploadFile
+from fastapi import FastAPI
+from jinja2 import FileSystemLoader
+from latex.jinja2 import make_env
+from pdflatex import PDFLaTeX
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
@@ -24,10 +27,10 @@ async def get_ai_response(field_name : str, data : str):
 @app.get("/generate-doc")
 async def generate_doc(data: str):
     data = json.loads(data)
-    with open("template.tex") as template_file:
-        template_text = template_file.read()
 
-    print(data)
-    final_text = template_text.format(**data)
+    env = make_env(loader=FileSystemLoader('.'))
+    template = env.get_template('template.tex')
 
-    return final_text
+    rendered_doc = template.render(**data)
+
+    return PDFLaTeX.from_string(rendered_doc).getpdf()
