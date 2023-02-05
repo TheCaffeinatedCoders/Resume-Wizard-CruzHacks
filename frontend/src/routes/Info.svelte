@@ -122,7 +122,7 @@
             bind:value={currentSectionData.additonalEducationInfo}
         />
     </div>
-    <button on:click={getAISuggauestion}>AI touch up</button>
+    <button class = "button button1" on:click={getAISuggauestion}>AI touch up</button>
     {#if currentAISuggestion}
         <p>{currentAISuggestion}</p>
     {/if}
@@ -250,7 +250,7 @@
 		color:black;
 		border: 2px solid #ffffff;; 
 		border-radius:20px;
-		width: 70%;
+		width: 41%;
 		/* margin-bottom: 50px; */
 	}
 	.button1:hover{
@@ -274,7 +274,7 @@
 		color:black;
 		border: 2px solid #ffffff;; 
 		border-radius:20px;
-		width: 30%;
+		width: 20%;
     }
     .button3:hover{
 		background-color: #ffffff;
