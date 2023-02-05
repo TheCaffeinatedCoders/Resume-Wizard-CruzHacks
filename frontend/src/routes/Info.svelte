@@ -41,7 +41,7 @@ let emptyForm = { company: '', position: '', start: '', end: '' };
         <label for="graduation">Graduation</label>
         <input type="text" id="graduation" name="graduation" placeholder="Your graduation..">
         <label for = "moreeducation">Add More</label>
-        <button type = "button" onclick = "alert('Added Education Slot');">Add Education</button> 
+        <button class="button button2" type = "button" onclick = "alert('Added Education Slot');">Add Education</button> 
     </form>
 
     <!-- <form> My Code
@@ -71,7 +71,7 @@ let emptyForm = { company: '', position: '', start: '', end: '' };
           <input type="text" id="end" bind:value={object.end} placeholder="Your end..">
         {/each}
         <label for="morejobs">Add More</label>
-        <button type="button" on:click={addObject}>
+        <button class= "button button1" type="button" on:click={addObject}>
           Add Jobs
         </button>
     </form>
@@ -86,7 +86,10 @@ let emptyForm = { company: '', position: '', start: '', end: '' };
         <label for="skill3">Skill 3</label>
         <input type="text" id="skill3" name="skill3" placeholder="Your skill..">
         <label for = "skilli">Add More</label>
-        <button type = "button" onclick = "alert('Added Skill Slot');">Add Skills</button> 
+        <!-- <button class="button button1" type = "button" onclick = "alert('Added Skill Slot');">Add Skills</button>  -->
+        <button class ="button button1" type="button" on:click={addObject}>
+            Add Skills
+          </button>
 
     </form>
 
@@ -120,5 +123,43 @@ let emptyForm = { company: '', position: '', start: '', end: '' };
         font-size: 20px;
         font-weight: 100;
     }
+
+    .button{
+		background-color: #ffffff;/*white*/
+		border: none;
+		color:white;
+		padding: 16px 32px;
+		text-align: center;
+		text-decoration: none;
+		display: inline-block;
+		font-size: 16px;
+		margin: 4px 2px; 
+		transition-duration:0.4s;
+		cursor:pointer; 
+	}
+	.button1{
+		background-color: rgba(175, 174, 224, 0.5);
+		color:black;
+		border: 2px solid #ffffff;; 
+		border-radius:20px;
+		width: 70%;
+		/* margin-bottom: 50px; */
+	}
+	.button1:hover{
+		background-color: #ffffff;
+		color: rgba(175, 174, 224, 10); 
+	}
+    .button2{
+		background-color: rgba(175, 174, 224, 0.5);
+		color:black;
+		border: 2px solid #ffffff;; 
+		border-radius:20px;
+		width: 80%;
+		/* margin-bottom: 50px; */
+	}
+	.button2:hover{
+		background-color: #ffffff;
+		color: rgba(175, 174, 224, 10); 
+	}
 
 </style>
