@@ -1,10 +1,46 @@
 <script>
+    let count = 0;
+    let dictionary = {
+    name: "",
+    age: "",
+    phone: "",
+  };
+//   Create a funciton to append a new key and empty value into the dictionary
+    function addKey() {
+        dictionary[count] = "";
+        count++;
+        dictionary = {...dictionary};
+    }
+    function updateValue(key, event) {
+    dictionary[key] = event.target.value;
+  }
 
+  // Function to print all the data at the bottom of the screen on button press
+    function printData() {
+        let data = "";
+        for (let key in dictionary) {
+        data += key + ": " + dictionary[key] + "\n";
+        }
+        alert(data);
+    }
 </script>
 
 <h1>Resume Wizard</h1>
 <h2>We are going to need some basic info from you to begin formatting your resume</h2>
 <form>
+{#each Object.entries(dictionary) as [key, value]}
+  <div>
+    <label for={key}>{key}:</label>
+    <input id={key} bind:value={value} on:input={(event) => updateValue(key, event)} />
+  </div>
+{/each}
+</form>
+
+<button on:click={addKey}>Add Key</button>
+<button on:click={printData}>Print Data</button>
+
+
+<!-- <form>
     <h3>Personal Information</h3>
     <label for="name">Name</label>
     <input type="text" id="name" name="name" placeholder="Your name..">
@@ -51,5 +87,3 @@
     <label for = "skilli">Add More</label>
     <button type = "button" onclick = "alert('Added Skill Slot');">Add Skills</button> 
     <!-- <input type ="button" id = "skilli" name="skilli"> -->
-
-</form>
