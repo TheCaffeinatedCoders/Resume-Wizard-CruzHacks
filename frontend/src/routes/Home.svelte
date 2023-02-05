@@ -1,10 +1,14 @@
+<script>
+import {push, pop, replace} from 'svelte-spa-router'
+</script>	
 <p>
     <a href="#/test">Test route</a>
 </p>
 <h1>Resume Wizard</h1>
 <h2>Whips up a resume via magic with ease</h2>
-<button>Get Started</button>
-
+<!-- <button>Get Started</button> -->
+<!-- <button onclick = "window.location.href = 'http://localhost:5000';">Get Started</button> -->
+<button on:click={() => push('/info')}>Get Started</button>
 <style>
 	h1 {
 		color: #ff3e00;
