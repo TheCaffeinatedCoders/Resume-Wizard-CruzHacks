@@ -23,4 +23,3 @@
     <p>Sorry, an error occurred while fetching the data.</p>
   {/if}
 {/await}
-  
