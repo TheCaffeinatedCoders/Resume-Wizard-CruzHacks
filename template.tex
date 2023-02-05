@@ -1,12 +1,5 @@
-%-------------------------
-% Resume in Latex
-% Author
-% License : MIT
-%------------------------
+documentclass{article}
 
-%---- Required Packages and Functions ----
-
-\documentclass[a4paper,11pt]{article}
 \usepackage{latexsym}
 \usepackage{xcolor}
 \usepackage{float}
@@ -64,7 +57,6 @@
   \vspace{-4pt}\scshape\raggedright\large
 }{}{0em}{}[\color{black}\titlerule \vspace{-7pt}]
 
-%-------------------------
 % Custom commands
 \newcommand{\resumeItem}[2]{
   \item{
@@ -121,9 +113,7 @@
 \newcolumntype{L}{>{\raggedright\arraybackslash}X}%
 \newcolumntype{R}{>{\raggedleft\arraybackslash}X}%
 \newcolumntype{C}{>{\centering\arraybackslash}X}%
-%---- End of Packages and Functions ------
 
-%-------------------------------------------
 %%%%%%  CV STARTS HERE  %%%%%%%%%%%
 %%%%%% DEFINE ELEMENTS HERE %%%%%%%
 \newcommand{\name}{\VAR{name}} % Your Name
@@ -132,7 +122,7 @@
 
 \begin{document}
 \fontfamily{cmr}\selectfont
-%----------HEADING-----------------
+%HEADING
 
 
 \parbox{2.35cm}{%
@@ -147,9 +137,8 @@
   \href{https://www.yourLinkedinProfile.com/in/}{\raisebox{0.0\height}{\footnotesize \faLinkedin}\ {\VAR{linkedin}}}
 \end{tabularx}
 }
-% \parbox{3.0cm}{%
-% \flushright \includegraphics[width=2cm,clip]{nitp_logo.png}
-% }
+ \parbox{3.0cm}{%
+ \flushright \includegraphics[width=2cm,clip]{nitp_logo.png}
+ }
 
-%-------------------------------------------
 \end{document}
