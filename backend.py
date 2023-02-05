@@ -87,18 +87,19 @@ async def generate_doc(data: dict):
                 template_text = template_text[:prev_insert_idx] + \
                     section_template_text + template_text[prev_insert_idx - 1:]
                 prev_insert_idx += len(section_template_text) + 1
-        doc = Document()
-        doc.append(NoEscape(template_text))
-        doc.generate_pdf('out', clean_tex=False)
+        # doc = Document()
+        # doc.append(NoEscape(template_text))
+        # doc.generate_pdf('out', clean_tex=False)
         # Return the PDF file as a response to the client as a byte array
-        with open('out.pdf', 'rb') as f:
-            pdf = f.read()
+        # with open('out.pdf', 'rb') as f:
+            # pdf = f.read()
         # Delete the PDF file
-        os.remove('out.pdf')
-        return Response(content=pdf, media_type="application/pdf")
+        # os.remove('out.pdf')
+        # os.remove('out.tex')
+        # return Response(content=pdf, media_type="application/pdf")
         # return Response(content=template_text, media_type="application/pdf")
 
-        # return template_text
+        return template_text
         # response = JSONResponse(content=template_text)
         # response.headers["Access-Control-Allow-Origin"] = "*"
         # return PDFLaTeX.from_string(template_text).getpdf()

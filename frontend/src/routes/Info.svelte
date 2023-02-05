@@ -76,6 +76,8 @@
             console.error(error);
         }
     }
+    // const PDFDocument = require('pdfkit');
+    // const fs = require('fs');
     async function getPDF() {
         try {
             const response = await fetch(`http://127.0.0.1:8000/generate-doc`, {
@@ -88,17 +90,13 @@
 
             if (response.ok) {
                 console.log("success");
-                const blob = await response.blob();
-                const link = document.createElement('a');
+                const latex = await response.json();
+                console.log(latex);
+                const blob = new Blob([latex], { type: "text/plain" });
+                const link = document.createElement("a");
+                link.download = "document.tex";
                 link.href = URL.createObjectURL(blob);
-                link.download = 'document.pdf';
                 link.click();
-                // const pdfUrl = URL.createObjectURL(blob);
-                // window.open(pdfUrl);
-                // const link = document.createElement("a");
-                // link.href = URL.createObjectURL(blob);
-                // link.download = "document.pdf";
-                // link.click();
             } else {
                 console.error(await response.text());
             }
@@ -240,7 +238,6 @@
         type="button"
         on:click={() => {
             if (currentSection === "skills") {
-                // alert(JSON.stringify(userData));
                 getPDF();
             }
             currentSection = sections[sections.indexOf(currentSection) + 1];
