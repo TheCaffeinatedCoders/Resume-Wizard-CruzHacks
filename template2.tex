@@ -1,0 +1,127 @@
+% LaTeX Curriculum Vitae
+% Current Version: v0.95
+% LICENSE: MIT
+
+
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[full]{textcomp}
+\usepackage{CJKutf8}
+\usepackage[lf]{ebgaramond}
+% \usepackage[scaled,swashQ]{garamondx}
+\usepackage[T1]{fontenc}
+
+\usepackage{enumitem}
+\usepackage[a4paper,left=.9in, right=.9in, top=1.5in, bottom=1.5in]{geometry}
+\usepackage{url}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{amsmath}
+
+% package settings
+\usepackage[
+    hidelinks,
+    pdfnewwindow=true,
+    pdfauthor={Xovee Xu},
+    pdftitle={Curriculum Vitae of Xovee Xu},
+]{hyperref}
+
+\pagestyle{headings}
+\markright{\textbf{Xovee Xu}}
+
+\setlength\parindent{2em}
+
+\thispagestyle{empty}
+
+% define cv section
+\newcommand{\cvsection}[1]{\section*{\rmfamily#1}}
+\newcommand{\cvsubsection}[1]{\subsection*{\rmfamily\hspace{1.6em}#1}}
+
+% begin
+\begin{document}
+
+% PERSONAL INFORMATION SECTION
+
+%start_personal_info
+\begin{center}
+    \Huge{
+    \rmfamily
+    \textbf{\VAR{name}}}
+\end{center}
+\vspace{20pt}
+
+
+\setlength{\parskip}{1pt}
+\renewcommand{\arraystretch}{1.25}
+
+\noindent \VAR{phone} \hfill \href{\VAR{github}}{\texttt{\VAR{github}}} %Phone Number and GitHub
+
+\noindent \href{\VAR{email}}{\texttt{\VAR{email}}} \hfill \href{\VAR{linkedin}}{\texttt{\VAR{linkedin}}} %Email and LinkedIn
+
+\setlength{\parskip}{3pt}
+%end_personal_info
+
+
+% OBJECTIVE SECTION
+
+\cvsection{Objective}
+\indent
+
+%start_objective
+\hangindent=2em\VAR{objective}
+%end_objective
+
+% EDUCATION SECTION
+
+\cvsection{Education}
+\indent 
+
+%start_education
+\textbf{\VAR{school_name}}, \VAR{degree} - \VAR{GPA}
+
+\hspace{2em}\VAR{major} \hfill \VAR{school_start_date} - \VAR{school_end_date}
+
+\hspace{2em}\textit{\VAR{school_description}}
+%end_education
+
+
+% PREVIOUS EMPLOYMENT SECTION
+
+\cvsection{Previous Employment}
+\indent
+
+%start_employment
+\textbf{\VAR{company_name}}, \VAR{company_city}
+
+\hspace{2em}\VAR{job_name} \hfill \VAR{job_start_date} - \VAR{job_end_date}
+
+\hspace{2em}\textit{\VAR{job_description}}
+%end_employment
+
+
+% PROJECTS SECTION
+
+\cvsection{Projects}
+\indent
+
+%start_projects
+\textbf{\VAR{project_name}}
+
+\hfill \VAR{project_start_date} - \VAR{project_end_date}
+
+\hspace{2em}\textit{\VAR{project_description}}
+%end_projects
+
+
+% SKILLS SECTION
+
+\cvsection{Skills}
+
+%start_skills
+\cvsubsection{\VAR{skill_name}}
+\indent
+
+\VAR{skill_description}
+%end_skills
+
+\end{document}
