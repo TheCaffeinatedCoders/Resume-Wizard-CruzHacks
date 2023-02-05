@@ -43,6 +43,7 @@
         skills: [""],
     };
 
+
     $: currentSectionData = userData[currentSection];
 
     // function nextSection() {
@@ -164,3 +165,73 @@
         Next
     </button>
 </div>
+
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Itim&display=swap');
+
+    div {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-flow: column;
+        background-color: rgba(175, 174, 224, 0.39);
+    }
+
+    h1 {
+        font-family: 'Itim', cursive;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    h2 {
+        margin-bottom: 50px;
+        font-family: 'Itim', cursive;
+        font-size: 20px;
+        font-weight: 100;
+    }
+
+    .button{
+		background-color: #ffffff;/*white*/
+		border: none;
+		color:white;
+		padding: 16px 32px;
+		text-align: center;
+		text-decoration: none;
+		display: inline-block;
+		font-size: 16px;
+		margin: 4px 2px; 
+		transition-duration:0.4s;
+		cursor:pointer; 
+	}
+	.button1{
+		background-color: rgba(175, 174, 224, 0.5);
+		color:black;
+		border: 2px solid #ffffff;; 
+		border-radius:20px;
+		width: 70%;
+		/* margin-bottom: 50px; */
+	}
+	.button1:hover{
+		background-color: #ffffff;
+		color: rgba(175, 174, 224, 10); 
+	}
+    .button2{
+		background-color: rgba(175, 174, 224, 0.5);
+		color:black;
+		border: 2px solid #ffffff;; 
+		border-radius:20px;
+		width: 80%;
+		/* margin-bottom: 50px; */
+	}
+	.button2:hover{
+		background-color: #ffffff;
+		color: rgba(175, 174, 224, 10); 
+	}
+
+</style>
