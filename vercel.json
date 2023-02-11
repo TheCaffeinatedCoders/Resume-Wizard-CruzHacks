@@ -3,7 +3,7 @@
     "builds": [
       {
         "src": "frontend/package.json",
-        "use": "@vercel/npm",
+        "use": "@vercel/node",
         "config": {
             "command": "npm run build",
             "output": "frontend/public"
