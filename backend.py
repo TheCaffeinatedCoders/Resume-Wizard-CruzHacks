@@ -1,21 +1,14 @@
 import os
-import io
 import openai
-import subprocess
-import json
-# from fastapi import FastAPI
+from fastapi import FastAPI, Response
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
-from fastapi import FastAPI, Response
 from jinja2 import FileSystemLoader
 from latex.jinja2 import make_env
-from pdflatex import PDFLaTeX
 from urllib.parse import unquote
-from fastapi import FastAPI
-from pylatex import Document, NoEscape
 
-openai.api_key = os.getenv("OPENAI_API_KEY")
-
+# openai.api_key = os.getenv("OPENAI_API_KEY")
+openai.api_key = os.environ['OPENAI_API_KEY']
 
 app = FastAPI()
 
@@ -87,30 +80,9 @@ async def generate_doc(data: dict):
                 template_text = template_text[:prev_insert_idx] + \
                     section_template_text + template_text[prev_insert_idx - 1:]
                 prev_insert_idx += len(section_template_text) + 1
-        # doc = Document()
-        # doc.append(NoEscape(template_text))
-        # doc.generate_pdf('out', clean_tex=False)
-        # Return the PDF file as a response to the client as a byte array
-        # with open('out.pdf', 'rb') as f:
-            # pdf = f.read()
-        # Delete the PDF file
-        # os.remove('out.pdf')
-        # os.remove('out.tex')
-        # return Response(content=pdf, media_type="application/pdf")
-        # return Response(content=template_text, media_type="application/pdf")
 
         return template_text
-        # response = JSONResponse(content=template_text)
-        # response.headers["Access-Control-Allow-Origin"] = "*"
-        # return PDFLaTeX.from_string(template_text).getpdf()
-        # return Response(content=template_text, media_type="application/pdf")
-        # pdfl = PDFLaTeX.from_jinja_template(env.from_string(template_text))
-        # pdf, log, cp = pdfl.create_pdf()
-        # return Response(content=pdf, media_type="application/pdf")
-        # pdf, log, cp = pdfl.create_pdf();
-        # headers = {'Content-Disposition': 'attachment; filename="out.pdf"'}
-        # headers = {'Content-Disposition': 'inline; filename="out.pdf"'}
-        # return Response(pdf, headers=headers, media_type='application/pdf')
+
         
     except Exception as e:
         print(e)
